@@ -14,34 +14,26 @@ pipeline {
         //     }
         // }
         stage('Prepare to Build') {
-           steps {
-               echo "We are ready to build"
-           }
-       }
-       stage('Build') {
-           steps {
+            steps {
+                echo "We are ready to build"
+            }
+        }
+        stage('Installing Docker') {
+            steps {
                script {             
-                   docker.build("finalAPP")
-                   echo "Succesfully builded"
-               }  
-           }
-       }
-       stage('Installing Docker') {
-           steps {
-               script {             
-                   sh "sudo apt-get update"
-                   sh "sudo apt-get install docker-ce docker-ce-cli containerd.io"
-                   echo "Succesfully builded"
-               }  
-           }
-       }
-       stage('Build') {
-           steps {
-               script {             
-                   docker.build("finalAPP")
-                   echo "Succesfully builded"
-               }  
-           }
-       }
+                    sh "sudo apt-get update"
+                    sh "sudo apt-get install docker-ce docker-ce-cli containerd.io"
+                    echo "Succesfully builded"
+                }  
+            }
+        } 
+        stage('Build') {
+            steps {
+                script {             
+                    docker.build("finalAPP")
+                    echo "Succesfully builded"
+                }  
+            }
+        }
     }
 }
