@@ -25,7 +25,7 @@ pipeline {
         stage('Build') {
             steps {
                 script { 
-                    echo "${docker -v}"                
+                    echo "${(whoami}"                
                     docker.build("finalAPP")
                     echo "Succesfully builded"
                 }  
