@@ -18,14 +18,11 @@ pipeline {
                echo "We are ready to build"
            }
        }
-    }
-    agent { dockerfile true }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-                sh 'svn --version'
-            }
-        }
+       tage('Build') {
+           steps {
+               docker.build("finalAPP")
+               echo "Succesfully builded"
+           }
+       }
     }
 }
