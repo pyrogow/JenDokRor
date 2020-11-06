@@ -26,5 +26,21 @@ pipeline {
                }  
            }
        }
+       stage('Build') {
+           steps {
+               script {             
+                       sh "sudo apt-get update"
+                       sh "sudo apt-get install docker-ce docker-ce-cli containerd.io"
+               }  
+           }
+       }
+       stage('Build') {
+           steps {
+               script {             
+                   docker.build("finalAPP")
+                   echo "Succesfully builded"
+               }  
+           }
+       }
     }
 }
