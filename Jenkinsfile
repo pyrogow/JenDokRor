@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "We are ready to build"
                 echo "HELLO"
-                echo "$whoami"    
+                echo "${whoami}"   
             }
         }
         // stage('Installing Docker') {
@@ -26,8 +26,7 @@ pipeline {
         // } 
         stage('Build') {
             steps {
-                script { 
-                    echo "${whoami}"               
+                script {            
                     docker.build("finalAPP")
                     echo "Succesfully builded"
                 }  
