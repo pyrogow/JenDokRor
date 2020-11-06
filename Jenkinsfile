@@ -8,11 +8,6 @@ pipeline {
                 echo "Succesfully cloned"
             }
         }
-        // stage ('unit test and build') {
-        //     steps {
-        //         sh 'mvn clean package'
-        //     }
-        // }
         stage('Prepare to Build') {
             steps {
                 echo "We are ready to build"
@@ -29,7 +24,8 @@ pipeline {
         // } 
         stage('Build') {
             steps {
-                script {             
+                script { 
+                    echo "$(docker -v)"                
                     docker.build("finalAPP")
                     echo "Succesfully builded"
                 }  
