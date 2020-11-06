@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "We are ready to build"
                 echo "HELLO"
-                echo "${whoami}"    
+                echo "$whoami"    
             }
         }
         // stage('Installing Docker') {
