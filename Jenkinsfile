@@ -18,15 +18,15 @@ pipeline {
                 echo "We are ready to build"
             }
         }
-        stage('Installing Docker') {
-            steps {
-               script {             
-                    sh "apt-get update"
-                    sh "apt-get install docker-ce docker-ce-cli containerd.io"
-                    echo "Succesfully builded"
-                }  
-            }
-        } 
+        // stage('Installing Docker') {
+        //     steps {
+        //        script {             
+        //             sh "apt-get update"
+        //             sh "apt-get install docker-ce docker-ce-cli containerd.io"
+        //             echo "Succesfully builded"
+        //         }  
+        //     }
+        // } 
         stage('Build') {
             steps {
                 script {             
