@@ -11,7 +11,7 @@ pipeline {
         stage('Prepare to Build') {
             steps {
                 echo "We are ready to build"
-                echo "${whoami}"   
+                sh "pwd"
                 echo "HELLO"
             }
         }
