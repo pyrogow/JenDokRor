@@ -13,12 +13,12 @@ pipeline {
         //         sh 'mvn clean package'
         //     }
         // }
-        stage('Build') {
+        stage('Prepare to Build') {
            steps {
                echo "We are ready to build"
            }
        }
-       tage('Build') {
+       stage('Build') {
            steps {
                docker.build("finalAPP")
                echo "Succesfully builded"
