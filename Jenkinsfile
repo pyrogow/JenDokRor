@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    
+        dockerfile {
+                    filename 'RubyApp_Dockerfile'
+                    echo "Succesfully builded"
+                }
     stages {
         stage ('Clone') {
             steps {
@@ -26,14 +29,14 @@ pipeline {
         // } 
         stage('Build') {
             steps {
-                dockerfile {
-                    filename 'RubyApp_Dockerfile'
-                    echo "Succesfully builded"
-                }
-                // script {            
-                //     docker.build("finalapp")
+                // dockerfile {
+                //     filename 'RubyApp_Dockerfile'
                 //     echo "Succesfully builded"
-                // }  
+                // }
+                script {            
+                    docker.build("finalapp")
+                    echo "Succesfully builded"
+                }  
             }
         }
     }
