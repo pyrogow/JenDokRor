@@ -1,9 +1,5 @@
 pipeline {
     agent any
-        dockerfile {
-                    filename 'RubyApp_Dockerfile'
-                    echo "Succesfully builded"
-                }
     stages {
         stage ('Clone') {
             steps {
@@ -18,15 +14,6 @@ pipeline {
                 echo "HELLO"
             }
         }
-        // stage('Installing Docker') {
-        //     steps {
-        //        script {             
-        //             sh "apt-get update"
-        //             sh "apt-get install docker-ce docker-ce-cli containerd.io"
-        //             echo "Succesfully builded"
-        //         }  
-        //     }
-        // } 
         stage('Build') {
             // agent {
             //     dockerfile {
