@@ -12,7 +12,7 @@
 FROM jenkins/jenkins:lts
 # Swith to root to be able to install Docker and modify permissions
 USER root
-RUN apt-get update && apt-get install -y sudo ruby rails
+RUN apt-get update && apt-get install -y sudo ruby rails vim nano
 # Install docker
 RUN curl -sSL https://get.docker.com/ | sh
 # Add jenkins user to docker group
