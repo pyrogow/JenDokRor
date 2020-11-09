@@ -1,0 +1,21 @@
+# FROM jenkins/jenkins
+# USER root
+# RUN apt-get update && apt-get install -y sudo ruby rails
+# # RUN apt-get update && apt-get install -y sudo ruby docker-ce docker-ce-cli containerd.io
+# # RUN apt install sudo -y
+# # RUN bundle install
+# # COPY ./helloworld/ ./helloworld/
+# USER jenkins
+# # CMD ruby -e "puts 1 + 2"
+
+# Official jenkins image
+FROM jenkins/jenkins:lts
+# Swith to root to be able to install Docker and modify permissions
+USER root
+RUN apt-get update && apt-get install -y sudo ruby rails
+# Install docker
+RUN curl -sSL https://get.docker.com/ | sh
+# Add jenkins user to docker group
+RUN usermod -a -G docker jenkins
+# Switch back to default user
+USER jenkins
