@@ -27,7 +27,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {            
-                    docker.build("finalAPP")
+                    docker.build("finalapp")
                     echo "Succesfully builded"
                 }  
             }
