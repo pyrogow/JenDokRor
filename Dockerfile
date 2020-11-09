@@ -1,6 +1,5 @@
 FROM ruby:alpine3.12
-RUN gem install bundler -v 2.0.2
-RUN bundle update --bundler
+RUN RUN apt-get update && apt-get install -y sudo ruby rails vim nano bundler
 WORKDIR /helloworld/
 COPY ./helloworld/ ./helloworld/
 ENTRYPOINT ["./helloworld/start.sh"]
