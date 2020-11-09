@@ -26,10 +26,14 @@ pipeline {
         // } 
         stage('Build') {
             steps {
-                script {            
-                    docker.build("finalapp")
+                dockerfile {
+                    filename 'RubyApp_Dockerfile'
                     echo "Succesfully builded"
-                }  
+                }
+                // script {            
+                //     docker.build("finalapp")
+                //     echo "Succesfully builded"
+                // }  
             }
         }
     }
