@@ -28,13 +28,12 @@ pipeline {
         //     }
         // } 
         stage('Build') {
-            agent {
-                dockerfile {
-                    filename 'RubyApp_Dockerfile'
-                }
-            }
+            // agent {
+            //     dockerfile {
+            //         filename 'RubyApp_Dockerfile'
+            //     }
+            // }
             steps {
-
                 script {            
                     docker.build("finalapp")
                     echo "Succesfully builded2"
