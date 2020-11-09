@@ -11,6 +11,7 @@ pipeline {
             steps {
                 echo "We are ready to build"
                 sh "pwd"
+                sh "whoami"
                 echo "HELLO"
             }
         }
@@ -23,7 +24,7 @@ pipeline {
             steps {
                 script {            
                     docker.build("finalapp")
-                    echo "Succesfully builded2"
+                    echo "Succesfully builded"
                 }  
             }
         }
