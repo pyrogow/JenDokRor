@@ -3,7 +3,7 @@ FROM ruby:alpine3.12
 RUN gem install bundler
 #gem install bundler:1.17.2
 # RUN bundle update --bundler
-#WORKDIR /helloworld/
 COPY ./helloworld/ ./helloworld/
-ENTRYPOINT ["./helloworld/start.sh"]
+WORKDIR ./helloworld/
+ENTRYPOINT ["./start.sh"]
 # CMD ["bash", "rails server"]

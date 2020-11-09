@@ -17,5 +17,7 @@ RUN apt-get update && apt-get install -y sudo ruby rails vim nano bundler
 RUN curl -sSL https://get.docker.com/ | sh
 # Add jenkins user to docker group
 RUN usermod -a -G docker jenkins
+# Add permissions to use docker.sock by docker group
+RUN chown root:docker /var/run/docker.sock
 # Switch back to default user
 USER jenkins
