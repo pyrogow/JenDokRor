@@ -1,7 +1,7 @@
 FROM ruby:alpine3.12
 # RUN apt-get update && apt-get install -y sudo ruby rails vim nano
 RUN apk update 
-RUN apk add rbenv
+# RUN apk add rbenv
 # RUN apk add git-core
 # RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 # RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
@@ -11,6 +11,7 @@ RUN apk add rbenv
 # RUN bundle update --bundler
 COPY ./helloworld/ ./helloworld/
 WORKDIR ./helloworld/
+# RUN bundle install
 ENTRYPOINT ["./start.sh"]
 # CMD ["bash", "rails server"]
 
