@@ -9,12 +9,14 @@ RUN apk add --update \
     readline-dev \
     openssl-dev \
     zlib-dev \
+    yarn \
 && rm -rf /var/cache/apk/*
 
 # rbenv
 ENV PATH /usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH
 ENV RBENV_ROOT /usr/local/rbenv
-ENV RUBY_VERSION 2.6.3
+ENV RUBY_VERSION 2.7.1
+ENV RAILS_VERSION 6.0.3.4
 ENV CONFIGURE_OPTS --disable-install-doc
 
 RUN apk add --update \
@@ -34,11 +36,15 @@ RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
 RUN rbenv install $RUBY_VERSION \
 &&  rbenv global $RUBY_VERSION
 
+RUN gem install tzinfo-data
 RUN gem install bundler
+RUN gem install rails -v $RAILS_VERSION
 
 # Add files
 COPY ./helloworld/ ./helloworld/
 WORKDIR ./helloworld/
+# RUN bundle install
+RUN bundle install
 
 # CMD
 ENTRYPOINT ["./start.sh"]

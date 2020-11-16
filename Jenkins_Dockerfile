@@ -1,3 +1,5 @@
+# ---------1-----------
+
 # FROM jenkins/jenkins
 # USER root
 # RUN apt-get update && apt-get install -y sudo ruby rails
@@ -7,6 +9,8 @@
 # # COPY ./helloworld/ ./helloworld/
 # USER jenkins
 # # CMD ruby -e "puts 1 + 2"
+
+# ---------2-----------
 
 # # Official jenkins image
 # FROM jenkins/jenkins:lts
@@ -27,40 +31,43 @@
 # # Switch back to default user
 # USER jenkins
 
-# # Official jenkins image
-# FROM jenkins/jenkins:lts
-# # Swith to root to be able to install Docker and modify permissions
+# ---------3-----------
+
+# Official jenkins image
+# FROM jenkins/jenkins
+# Swith to root to be able to install Docker and modify permissions
 # USER root
-# RUN apt-get update && apt-get install -y sudo vim nano rbenv curl
+# RUN apt-get update -y && apt-get upgrade -y && apt-get autoremove -y && apt-get install -y sudo vim nano
 # RUN apt-get install -y gcc g++ make libpcre3-dev libssl-dev tmux emacs libncurses5-dev libreadline-dev libffi-dev libyaml-dev valgrind git-core libxml2-dev libxslt-dev ntp sqlite3 libsqlite3-dev
-# # RUN apt-get install -y git
-# # RUN apt-get install -y rbenv
+# RUN apt-get install -y rbenv
 # ENV PATH /usr/local/rbenv/:/usr/local/rbenv/bin
 # ENV RBENV_ROOT /usr/local/rbenv
 # ENV RUBY_VERSION 2.6.6
 # ENV CONFIGURE_OPTS --disable-install-doc
 # # RUN git --version
 
-# #RUN apt-get install -y linux-headers imagemagick-dev libffi-dev libffi-dev 
-# # RUN git clone https://github.com/sstephenson/rbenv.git ${RBENV_ROOT}
-# # RUN git clone https://github.com/sstephenson/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build
-# # RUN git clone https://github.com/jf/rbenv-gemset.git ${RBENV_ROOT}/plugins/rbenv-gemset
-# # RUN ${RBENV_ROOT}/plugins/ruby-build/install.sh
+# # RUN apt-get install -y linux-headers imagemagick-dev libffi-dev libffi-dev 
+# RUN git clone https://github.com/sstephenson/rbenv.git ${RBENV_ROOT}
+# RUN git clone https://github.com/sstephenson/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build
+# RUN git clone https://github.com/jf/rbenv-gemset.git ${RBENV_ROOT}/plugins/rbenv-gemset
+# RUN ${RBENV_ROOT}/plugins/ruby-build/install.sh
 
-# #RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh 
+# RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh 
 
-# # RUN rbenv install $RUBY_VERSION 
-# # #&& rbenv global $RUBY_VERSION
+# RUN rbenv install $RUBY_VERSION 
+#&& rbenv global $RUBY_VERSION
 
-# # RUN gem install bundler
-# # Install docker
+# RUN gem install bundler
+# Install docker
 # RUN curl -sSL https://get.docker.com/ | sh
-# # Add jenkins user to docker group
+# Add jenkins user to docker group
 # RUN usermod -a -G docker jenkins
-# # Add permissions to use docker.sock by docker group!!! Only after creating image can do this, or use docker-conpose!!!!
-# # RUN chown root:docker /var/run/docker.sock
-# # Switch back to default user
+# Add permissions to use docker.sock by docker group!!! Only after creating image can do this, or use docker-conpose!!!!
+# RUN chown root:docker /var/run/docker.sock
+# Switch back to default user
 # USER jenkins
+
+# ---------4-----------
 
 # # Official jenkins image
 # FROM jenkins/jenkins:lts
@@ -94,18 +101,65 @@
 # # Switch back to default user
 # USER jenkins
 
+
+# ---------5-----------
+
+#
+# # Official jenkins image
+# FROM jenkins/jenkins:lts
+# # Swith to root to be able to install Docker and modify permissions
+# USER root
+# RUN apt-get update
+# RUN apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev sudo vim nano git sqlite3
+# # RUN apt-get install -y sudo vim nano git
+
+# # rbenv
+# ENV RBENV_ROOT /usr/local/rbenv
+# ENV PATH $RBENV_ROOT/bin:$RBENV_ROOT/bin:$PATH
+# ENV RUBY_VERSION 2.6.3
+# ENV RAILS_VERSION 5.2.0
+# ENV BUNLER_VERSION 1.7.2
+# ENV CONFIGURE_OPTS --disable-install-doc
+
+# RUN git clone --depth 1 git://github.com/sstephenson/rbenv.git ${RBENV_ROOT} \
+# &&  git clone --depth 1 https://github.com/sstephenson/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build \
+# &&  git clone --depth 1 git://github.com/jf/rbenv-gemset.git ${RBENV_ROOT}/plugins/rbenv-gemset \
+# && ${RBENV_ROOT}/plugins/ruby-build/install.sh
+
+# RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
+# RUN echo 'eval "$(rbenv init -)"' >> $RBENV_ROOT/.bashrc
+
+# RUN rbenv install $RUBY_VERSION \
+# && rbenv global $RUBY_VERSION
+
+# RUN gem install bundler
+# RUN gem install rails -v $RAILS_VERSION
+
+# RUN ruby -v
+# RUN echo "git --version"
+# RUN pwd
+# RUN curl -sSL https://get.docker.com/ | sh
+# # Add jenkins user to docker group
+# RUN usermod -a -G docker jenkins
+# # Add permissions to use docker.sock by docker group!!! Only after creating image can do this, or use docker-conpose!!!!
+# # RUN chown root:docker /var/run/docker.sock
+# # Switch back to default user
+# USER jenkins
+
+# ---------6----------
+
 # Official jenkins image
 FROM jenkins/jenkins:lts
 # Swith to root to be able to install Docker and modify permissions
 USER root
-ENV RUBY_VERSION 2.6.3
 RUN apt-get update
-RUN apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev sudo vim nano git git-core
+RUN apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev sudo vim nano git yarn
 
 # rbenv
 ENV PATH /usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH
 ENV RBENV_ROOT /usr/local/rbenv
-ENV RUBY_VERSION 2.6.3
+ENV RUBY_VERSION 2.7.1
+ENV RAILS_VERSION 6.0.3.4
 ENV CONFIGURE_OPTS --disable-install-doc
 
 RUN git clone --depth 1 git://github.com/sstephenson/rbenv.git ${RBENV_ROOT} \
@@ -119,11 +173,8 @@ RUN rbenv install $RUBY_VERSION \
 &&  rbenv global $RUBY_VERSION
 
 RUN gem install bundler
-RUN gem install rails -v 5.2.0
+RUN gem install rails -v $RAILS_VERSION
 
-RUN ruby -v
-RUN echo "git --version"
-RUN pwd
 RUN curl -sSL https://get.docker.com/ | sh
 # Add jenkins user to docker group
 RUN usermod -a -G docker jenkins
