@@ -31,7 +31,7 @@ pipeline {
         stage('Run Finalapp') {
             steps {
                 script {            
-                    docker.image('mysql:5').withRun('-p 3306:3306')
+                    docker.image("finalapp").withRun("-p 3000:3000")
                     echo "Succesfully Runed"
                 }  
             }
