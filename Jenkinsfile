@@ -25,7 +25,7 @@ pipeline {
                 script {            
                     docker.build("finalapp")
                     echo "Succesfully builded"
-                    sh "docker run -d -p 3000:3000 -p 40000:40000 --privileged=true --name finalcontainer finalapp"
+                    sh "docker run -d -p 3000:3000 -p 40000:40000 -v /var/run/docker.sock:/var/run/docker.sock --privileged=true --name finalcontainer finalapp"
                 }  
             }
         }
