@@ -124,6 +124,7 @@ COPY ./helloworld/ ./helloworld/
 WORKDIR ./helloworld/
 # RUN bundle install
 RUN bundle install
+RUN yarn install --check-files
 
 # CMD
 ENTRYPOINT ["./start.sh"]
