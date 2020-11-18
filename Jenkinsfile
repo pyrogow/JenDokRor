@@ -25,7 +25,7 @@ pipeline {
                 script {            
                     docker.build("finalapp")
                     echo "Succesfully builded"
-                    sh "docker run finalapp -p 3000:3000 -p 40000:40000"
+                    sh "docker run -d -p 3000:3000 -p 40000:40000 finalapp"
                 }  
             }
         }
