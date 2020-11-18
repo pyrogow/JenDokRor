@@ -91,6 +91,9 @@ RUN apk add --update \
     yarn \
 && rm -rf /var/cache/apk/*
 
+RUN apk add --no-cache sqlite-libs
+RUN apk add openssh-client build-base mariadb-dev sqlite-dev
+
 # rbenv
 ENV PATH /usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH
 ENV RBENV_ROOT /usr/local/rbenv
@@ -118,6 +121,7 @@ RUN rbenv install $RUBY_VERSION \
 RUN gem install tzinfo-data
 RUN gem install bundler
 RUN gem install rails -v $RAILS_VERSION
+RUN gem install sqlite3
 
 # Add files
 COPY ./helloworld/ ./helloworld/
