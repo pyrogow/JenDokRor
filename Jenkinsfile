@@ -15,7 +15,7 @@ pipeline {
                 echo "HELLO"
             }
         }
-        stage('Build Finalapp') {
+        stage('BUILD & RUN Finalapp') {
             // agent {
             //     dockerfile {
             //         filename 'RubyApp_Dockerfile'
@@ -25,16 +25,17 @@ pipeline {
                 script {            
                     docker.build("finalapp")
                     echo "Succesfully builded"
+                    sh "docker run finalapp -p 3000:3000"
                 }  
             }
         }
-        stage('Run Finalapp') {
-            steps {
-                script {            
-                    docker.image("finalapp").withRun("-p 3000:3000")
-                    echo "Succesfully Runed"
-                }  
-            }
-        }
+        // stage('Run Finalapp') {
+        //     steps {
+        //         script {            
+        //             docker.image("finalapp").withRun("-p 3000:3000")
+        //             echo "Succesfully Runed"
+        //         }  
+        //     }
+        // }
     }
 }
