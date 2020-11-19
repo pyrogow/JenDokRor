@@ -1,3 +1,5 @@
+# Hello-World from RoR inside docker container inside docker container))
+Docker + Jenkins + Git + RoR
 # README
 
 This README would normally document whatever steps are necessary to get the
