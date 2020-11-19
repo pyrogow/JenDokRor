@@ -7,4 +7,4 @@ if [ -f tmp/pids/server.pid ]; then
 fi
 
 # cd ./helloworld && bundle exec rails s
-bundle exec rails s
+bundle exec rails server --binding 0.0.0.0 --port 3000
