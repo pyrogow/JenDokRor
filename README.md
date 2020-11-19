@@ -16,7 +16,7 @@ Things you may want to cover:
 
 5. Run this JOB
 
-# NOTE: If you will probaly have some problem with docker.sock type this two command as root user:
+# NOTE: If you will probably have some problem with docker.sock type this two command as root user:
 
 1. chown root:docker /var/run/docker.sock
 
@@ -26,7 +26,7 @@ Things you may want to cover:
 
 command to connect to container with specific user "-u $USER":
 
-docker exec -it -u root jenkinscontainer bash
+docker exec -it -u $USER jenkinscontainer bash
 
 command to see Jenkins login password:
 
