@@ -20,3 +20,10 @@ Things you may want to cover:
 
 2. chmod g+w var/run/docker.sock
 
+# Helpfull info:
+
+command to connect to container with specific user "-u $USER"
+docker exec -it -u root jenkinscontainer bash
+
+command to see Jenkins login password
+cat /var/jenkins_home/secrets/initialAdminPassword
